@@ -1,0 +1,20 @@
+---
+import classnames from 'classnames'
+
+export interface Props {
+  id?: string
+  title?: string
+  class?: string
+}
+
+const { id, title, class: className } = Astro.props;
+
+---
+
+<section id={id} class={classnames(className, 'p-4')}>
+  <div class="w-full mb-2 text-3xl font-bold"><slot name="title">{title}</slot></div>
+
+  <div class="p-2">
+    <slot name="content" /><slot />
+  </div>
+</section>

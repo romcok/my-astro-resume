@@ -1,0 +1,27 @@
+---
+import Resume from "../resume.json";
+import Layout from "../layouts/Layout.astro";
+import Experience from "../components/index/Experience.astro";
+import Projects from "../components/index/Projects.astro";
+import About from "../components/index/About.astro";
+import Tabs from "../components/widgets/Tabs.astro";
+import Skills from "../components/index/Skills.astro";
+---
+
+<Layout title={Resume.basics.name}>
+  <About basics={Resume.basics} />
+
+  <div class="content">
+    <Tabs selected="1">
+      <div slot="experience">
+        <Experience items={Resume.work} />
+      </div>
+      <div slot="projects">
+        <Projects items={Resume.projects} />
+      </div>
+      <div slot="skills">
+        <Skills items={Resume.skills} />
+      </div>
+    </Tabs>
+  </div>
+</Layout>

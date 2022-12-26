@@ -1,0 +1,31 @@
+---
+import type { ResumeWork } from "../../types";
+import { dateFormat } from "../../utils";
+import Timeline from "../widgets/Timeline.astro";
+import Panel from "../widgets/Panel.astro";
+import TimelineItem from "../widgets/TimelineItem.astro";
+import BuildingOffice from "../icons/BuildingOffice.astro";
+
+export interface Props {
+  items: Array<ResumeWork>;
+}
+
+const { items } = Astro.props;
+---
+
+<Panel id="experience" title="Experience">
+  <Timeline slot="content">
+    {
+      items.map((i) => (
+        <TimelineItem
+          icon={BuildingOffice}
+          date={`${dateFormat(i.startDate)} - ${
+            dateFormat(i.endDate) ?? "Present"
+          }`}
+          title={`${i.position} at ${i.name}`}
+          content={i.summary}
+        />
+      ))
+    }
+  </Timeline>
+</Panel>

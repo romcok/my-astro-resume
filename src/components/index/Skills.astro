@@ -1,0 +1,154 @@
+---
+import Panel from "../widgets/Panel.astro";
+import Quote from "../widgets/Quote.astro";
+
+---
+
+<Panel id="skills" title="Skills">
+  <Quote
+    text="Patience with small details makes perfect a large work, like the universe."
+    author="Jalāl al-Dīn Muḥammad Rūmī"
+    label="Persian poet (1207 - 1273) (13th-century)"
+    image="rumi.webp"
+  />
+  <!--section class="text-gray-600 body-font">
+    <div class="container flex flex-wrap px-5mx-auto">
+      <div class="relative flex pt-10 pb-20 mx-auto sm:items-center md:w-2/3">
+        <div class="absolute inset-0 flex items-center justify-center w-6 h-full">
+          <div class="w-1 h-full bg-gray-200 pointer-events-none"></div>
+        </div>
+        <div class="relative z-10 inline-flex items-center justify-center flex-shrink-0 w-6 h-6 mt-10 text-sm font-medium text-white bg-indigo-500 rounded-full sm:mt-0 title-font">1</div>
+        <div class="flex flex-col items-start flex-grow pl-6 md:pl-8 sm:items-center sm:flex-row">
+          <div class="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 text-indigo-500 bg-indigo-100 rounded-full">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-12 h-12" viewBox="0 0 24 24">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="flex-grow mt-6 sm:pl-6 sm:mt-0">
+            <h2 class="mb-1 text-xl font-medium text-gray-900 title-font">Shooting Stars</h2>
+            <p class="leading-relaxed">VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk bespoke try-hard cliche palo santo offal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative flex pb-20 mx-auto sm:items-center md:w-2/3">
+        <div class="absolute inset-0 flex items-center justify-center w-6 h-full">
+          <div class="w-1 h-full bg-gray-200 pointer-events-none"></div>
+        </div>
+        <div class="relative z-10 inline-flex items-center justify-center flex-shrink-0 w-6 h-6 mt-10 text-sm font-medium text-white bg-indigo-500 rounded-full sm:mt-0 title-font">2</div>
+        <div class="flex flex-col items-start flex-grow pl-6 md:pl-8 sm:items-center sm:flex-row">
+          <div class="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 text-indigo-500 bg-indigo-100 rounded-full">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-12 h-12" viewBox="0 0 24 24">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="flex-grow mt-6 sm:pl-6 sm:mt-0">
+            <h2 class="mb-1 text-xl font-medium text-gray-900 title-font">The Catalyzer</h2>
+            <p class="leading-relaxed">VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk bespoke try-hard cliche palo santo offal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative flex pb-20 mx-auto sm:items-center md:w-2/3">
+        <div class="absolute inset-0 flex items-center justify-center w-6 h-full">
+          <div class="w-1 h-full bg-gray-200 pointer-events-none"></div>
+        </div>
+        <div class="relative z-10 inline-flex items-center justify-center flex-shrink-0 w-6 h-6 mt-10 text-sm font-medium text-white bg-indigo-500 rounded-full sm:mt-0 title-font">3</div>
+        <div class="flex flex-col items-start flex-grow pl-6 md:pl-8 sm:items-center sm:flex-row">
+          <div class="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 text-indigo-500 bg-indigo-100 rounded-full">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-12 h-12" viewBox="0 0 24 24">
+              <circle cx="12" cy="5" r="3"></circle>
+              <path d="M12 22V8M5 12H2a10 10 0 0020 0h-3"></path>
+            </svg>
+          </div>
+          <div class="flex-grow mt-6 sm:pl-6 sm:mt-0">
+            <h2 class="mb-1 text-xl font-medium text-gray-900 title-font">The 400 Blows</h2>
+            <p class="leading-relaxed">VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk bespoke try-hard cliche palo santo offal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="relative flex pb-10 mx-auto sm:items-center md:w-2/3">
+        <div class="absolute inset-0 flex items-center justify-center w-6 h-full">
+          <div class="w-1 h-full bg-gray-200 pointer-events-none"></div>
+        </div>
+        <div class="relative z-10 inline-flex items-center justify-center flex-shrink-0 w-6 h-6 mt-10 text-sm font-medium text-white bg-indigo-500 rounded-full sm:mt-0 title-font">4</div>
+        <div class="flex flex-col items-start flex-grow pl-6 md:pl-8 sm:items-center sm:flex-row">
+          <div class="inline-flex items-center justify-center flex-shrink-0 w-24 h-24 text-indigo-500 bg-indigo-100 rounded-full">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-12 h-12" viewBox="0 0 24 24">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="flex-grow mt-6 sm:pl-6 sm:mt-0">
+            <h2 class="mb-1 text-xl font-medium text-gray-900 title-font">Neptune</h2>
+            <p class="leading-relaxed">VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk bespoke try-hard cliche palo santo offal.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section class="text-gray-600 body-font">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="mb-20 text-center">
+      <h1 class="mb-4 text-2xl font-medium text-center text-gray-900 sm:text-3xl title-font">Raw Denim Heirloom Man Braid</h1>
+      <p class="mx-auto text-base leading-relaxed xl:w-2/4 lg:w-3/4">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh mi pug.</p>
+    </div>
+    <div class="flex flex-wrap -mx-2 lg:w-4/5 sm:mx-auto sm:mb-2">
+      <div class="w-full p-2 sm:w-1/2">
+        <div class="flex items-center h-full p-4 bg-gray-100 rounded">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          <span class="font-medium title-font">Authentic Cliche Forage</span>
+        </div>
+      </div>
+      <div class="w-full p-2 sm:w-1/2">
+        <div class="flex items-center h-full p-4 bg-gray-100 rounded">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          <span class="font-medium title-font">Kinfolk Chips Snackwave</span>
+        </div>
+      </div>
+      <div class="w-full p-2 sm:w-1/2">
+        <div class="flex items-center h-full p-4 bg-gray-100 rounded">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          <span class="font-medium title-font">Coloring Book Ethical</span>
+        </div>
+      </div>
+      <div class="w-full p-2 sm:w-1/2">
+        <div class="flex items-center h-full p-4 bg-gray-100 rounded">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          <span class="font-medium title-font">Typewriter Polaroid Cray</span>
+        </div>
+      </div>
+      <div class="w-full p-2 sm:w-1/2">
+        <div class="flex items-center h-full p-4 bg-gray-100 rounded">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          <span class="font-medium title-font">Pack Truffaut Blue</span>
+        </div>
+      </div>
+      <div class="w-full p-2 sm:w-1/2">
+        <div class="flex items-center h-full p-4 bg-gray-100 rounded">
+          <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" class="flex-shrink-0 w-6 h-6 mr-4 text-indigo-500" viewBox="0 0 24 24">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+            <path d="M22 4L12 14.01l-3-3"></path>
+          </svg>
+          <span class="font-medium title-font">The Catcher In The Rye</span>
+        </div>
+      </div>
+    </div>
+    <button class="flex px-8 py-2 mx-auto mt-16 text-lg text-white bg-indigo-500 border-0 rounded focus:outline-none hover:bg-indigo-600">Button</button>
+  </div>
+</section-->
+</Panel>

@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.animated-gradient-short {
+  animation: animatedGradientShort 5s infinite ease;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  background-clip: text;
+  color: transparent; 
+}
+
+@keyframes animatedGradientShort {
+  0%, 100% {
+    background-size: 100%;
+  }
+
+  50% {
+    background-size: 40%;
+  }
+}
+
+.animated-gradient {
+  animation: animatedGradient 2s infinite ease;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  background-clip: text;
+  color: transparent; 
+}
+
+@keyframes animatedGradient {
+  0%, 100% {
+    background-size: 100%;
+  }
+
+  50% {
+    background-size: 250%;
+  }
+}
+
+.gradient-text-short {
+  @apply text-transparent bg-clip-text;
+  @apply bg-gradient-to-r;
+  @apply from-blue-500 via-purple-500 to-indigo-500;
+}
+
+.gradient-text {
+  @apply text-transparent bg-clip-text;
+  @apply bg-gradient-to-r;
+  @apply from-blue-500 to-indigo-500 via-purple-500;
+}

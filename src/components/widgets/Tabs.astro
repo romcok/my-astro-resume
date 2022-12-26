@@ -1,0 +1,111 @@
+---
+import Bolt from "../icons/Bolt.astro";
+import Beaker from "../icons/Beaker.astro";
+import Briefcase from "../icons/Briefcase.astro";
+
+export interface Props {
+  selected?: string | number;
+}
+
+const { selected = 1 } = Astro.props;
+
+const tabs = [
+  { label: "Experience", icon: Briefcase },
+  { label: "Projects", icon: Beaker },
+  { label: "Skills", icon: Bolt },
+];
+---
+
+<style>
+  .tabs input,
+  .tabs .panel {
+    display: none;
+  }
+
+  .tabs label {
+    cursor: pointer;
+  }
+
+  .tabs li:first-of-type label {
+    border-radius: 0.5rem 0rem 0rem 0.5rem;
+  }
+
+  .tabs li:last-of-type label {
+    border-radius: 0rem 0.5rem 0.5rem 0rem;
+  }
+
+  .tabs .tab-item:has(input:checked) label {
+    /* TEXT-GRAY-500 */
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity)) !important;
+    /* BG-BASE-200 */
+    --tw-bg-opacity: 1;
+    background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .tabs:has(.tab-item:nth-child(1) input:checked) .panel:nth-child(1),
+  .tabs:has(.tab-item:nth-child(2) input:checked) .panel:nth-child(2),
+  .tabs:has(.tab-item:nth-child(3) input:checked) .panel:nth-child(3),
+  .tabs:has(.tab-item:nth-child(4) input:checked) .panel:nth-child(4) {
+    visibility: visible;
+    display: block;
+    opacity: 1;
+    animation-name: fadeIn;
+    animation-duration: 0.25s;
+  }
+</style>
+
+<div class="tabs">
+  <!-- div class="sm:hidden">
+    <label for="tabs" class="sr-only">Select your country</label>
+    <select id="tabs" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+        <option>Profile</option>
+        <option>Canada</option>
+        <option>France</option>
+        <option>Germany</option>
+    </select>
+  </div-->
+  <ul
+    class="hidden w-full text-sm font-medium text-center text-gray-500 divide-x divide-gray-200 rounded-lg shadow sm:flex"
+  >
+    {
+      tabs.map(({ icon: Icon, label }, idx) => (
+        <li class="w-full tab-item">
+          <label class="inline-block w-full p-4 focus:ring-4 focus:ring-blue-300 focus:outline-none">
+            <input
+              type="radio"
+              name="radio"
+              checked={idx === Number(selected) - 1 ? true : false}
+            />
+            <span class="flex items-center justify-center">
+              <Icon styles="flex-shrink-0 w-5 h-5" />
+
+              <span class="ml-3 text-sm font-medium">{label}</span>
+            </span>
+          </label>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="panels">
+    <div class="panel">
+      <slot name="experience" />
+    </div>
+    <div class="panel">
+      <slot name="projects" />
+    </div>
+    <div class="panel">
+      <slot name="skills" />
+    </div>
+  </div>
+</div>

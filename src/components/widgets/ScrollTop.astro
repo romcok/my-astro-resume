@@ -1,0 +1,38 @@
+---
+// https://codepen.io/bitbug/pen/yLKeQgB
+import ChevronUp from "../icons/ChevronUp.astro";
+---
+
+<div
+  class="absolute float-right text-right scroll-top bottom-2 right-4 sm:bottom-6 sm:right-6 lg:bottom-8 lg:right-8"
+>
+  <a
+    class="sticky inline-block p-2 text-white transition bg-gray-300 rounded-full shadow hover:bg-gray-500 sm:p-3 lg:p-4"
+    href="#top"
+  >
+    <span class="sr-only">Back to top</span>
+    <ChevronUp class="w-5 h-5" />
+  </a>
+</div>
+<style>
+  .scroll-top {
+    position: absolute;
+    top: 0;
+    right: 2vh;
+    height: 100%;
+  }
+
+  .scroll-top:before {
+    content: "";
+    display: block;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  .scroll-top a {
+    position: sticky;
+    top: 94vh;
+    cursor: pointer;
+    font-size: 20px;
+  }
+</style>

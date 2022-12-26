@@ -1,0 +1,30 @@
+---
+import type { ResumeBasics } from "../../types";
+import TextScrolling from "../TextScrolling.astro";
+import TextTyping from "../TextTyping.astro";
+
+export interface Props {
+  basics: ResumeBasics;
+}
+
+const { basics } = Astro.props;
+const firstName = basics.name.split(" ")[0];
+const label = `A ${basics.label} and Entrepreneur.`;
+---
+
+<div id="about" class="pb-12 mt-5">
+  <div class="py-1 text-xl">
+    <TextScrolling delay="0.5s" />
+  </div>
+  <div
+    class="text-5xl font-bold text-transparent gradient-text-short animated-gradient-short"
+  >
+    Here is {firstName}
+  </div>
+  <TextTyping class="py-3 text-3xl font-bold" text={label} delay="0.5s" />
+  <div class="py-2">
+    <text class="text-lg">
+      {basics.summary}
+    </text>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+---
+import ChevronUp from "./icons/ChevronUp.astro";
+import ScrollTop from "./widgets/ScrollTop.astro";
+
+const today = new Date();
+---
+
+<footer class="block pt-10 mb-5 footer footer-center">
+  <div class="inline opacity-75">
+    <div class="handmade">
+      <!--p>&copy; {today.getFullYear()} handmade by <em> Roman Novák</em></p-->
+      <div class="text-center">handmade by <i>Roman Novák</i></div>
+    </div>
+  </div>
+</footer>
+<style>
+  .handmade em {
+    font-family: "Shadows Into Light", cursive;
+    font-size: 1.25em;
+    margin-left: 5px;
+  }
+</style>

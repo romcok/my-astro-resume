@@ -1,0 +1,41 @@
+---
+import classnames from "classnames";
+
+export interface Props {
+  class?: string;
+  date: string;
+  badge?: string | boolean;
+  title: string;
+  content: string;
+  icon?: any;
+}
+
+const {
+  class: className,
+  date,
+  badge,
+  title,
+  content,
+  icon: Icon,
+} = Astro.props;
+---
+
+<li class={classnames(className, "mb-10 ml-6")}>
+  <span
+    class="absolute flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full -left-3 ring-8 ring-white"
+  >
+    {Icon && <Icon styles="w-3 h-3 text-gray-600" />}
+  </span>
+  <h3 class="mb-1 text-lg font-semibold text-gray-900">
+    <slot name="title">{title}</slot>
+  </h3>
+  <time class="block mb-2 text-sm font-normal leading-none text-gray-400">
+    <slot name="date">
+      {date}
+      {badge && <div class="badge badge-outline">{badge}</div>}
+    </slot>
+  </time>
+  <p class="text-base font-normal text-gray-500">
+    <slot name="content">{content}</slot>
+  </p>
+</li>

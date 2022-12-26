@@ -1,0 +1,62 @@
+---
+import type { ResumeProject } from "../../types";
+import { yearRange } from "../../utils";
+import Window from "../icons/Window.astro";
+import Panel from "../widgets/Panel.astro";
+import Timeline from "../widgets/Timeline.astro";
+import TimelineItem from "../widgets/TimelineItem.astro";
+
+export interface Props {
+  items: Array<ResumeProject>;
+}
+
+const { items } = Astro.props;
+---
+
+<style is:global>
+  .toggle-display:has(input.toggle:checked) .inactive {
+    display: none;
+  }
+
+  .toggle-display .inactive {
+    animation-name: fadeIn;
+    animation-duration: 0.5s;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 0.5;
+    }
+  }
+</style>
+
+<Panel id="projects" class="toggle-display">
+  <div slot="title">
+    <span class="flex">
+      <span class="flex-1">Projects</span>
+      <div class="form-control">
+        <label class="cursor-pointer label">
+          <span class="mr-4 label-text">Only active</span>
+          <input type="checkbox" class="toggle" checked />
+        </label>
+      </div>
+    </span>
+  </div>
+  <Timeline slot="content">
+    {
+      items.map((i) => (
+        <TimelineItem
+          class={i.active ? "active" : "inactive"}
+          icon={Window}
+          date={yearRange(i.startDate, i.endDate)}
+          badge={!i.active && "discontinued"}
+          title={i.name}
+          content={i.description}
+        />
+      ))
+    }
+  </Timeline>
+</Panel>

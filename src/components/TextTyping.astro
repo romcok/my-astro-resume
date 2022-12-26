@@ -1,0 +1,64 @@
+---
+import classnames from "classnames";
+export interface Props {
+  text: string;
+  class?: string;
+  cursorColor?: string;
+  cursorSpeed?: string;
+  duration?: string;
+  delay?: string;
+}
+
+const {
+  text,
+  class: className,
+  cursorColor = "orange",
+  cursorSpeed = "2s",
+  duration = "1s",
+  delay = "0s",
+} = Astro.props;
+---
+
+<style define:vars={{ cursorColor, cursorSpeed, duration, delay }}>
+  .typing-text .typed-out {
+    overflow: hidden;
+
+    white-space: nowrap;
+    animation-name: typing;
+    animation-duration: var(--duration);
+    animation-fill-mode: forwards;
+    animation-delay: var(--delay);
+    width: 0;
+  }
+  .cursor {
+    animation-name: flashing;
+    animation-duration: var(--cursorSpeed);
+    animation-iteration-count: infinite;
+    color: var(--cursorColor);
+  }
+  @keyframes typing {
+    from {
+      width: 0;
+    }
+    to {
+      width: 98%;
+    }
+  }
+  @keyframes flashing {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="inline-block typing-text">
+  <div class={classnames(className, "typed-out float-left")}>{text}</div><div
+    class={classnames(className, "cursor float-left")}
+  >
+    |
+  </div>
+</div>
