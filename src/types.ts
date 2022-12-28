@@ -24,10 +24,11 @@ export type ResumeBasics = {
 export type ResumeWork = {
   name: string,
   position: string,
+  location: string,
   summary: string,
   startDate: string,
-  endDate: string | null,
-  url: string,
+  endDate?: string | null,
+  url?: string | null,
   keywords: Array<string>,
   highlights: Array<string>,
 }
@@ -45,7 +46,7 @@ export type ResumeEducation = {
 
 export type ResumeInterest = {
   name: string,
-  keywords: Array<string>
+  keywords?: Array<string>
 }
 
 export type ResumeProject = {
@@ -54,11 +55,11 @@ export type ResumeProject = {
   entity: string,
   startDate: string,
   endDate: string | null,
-  highlights: Array<string>,
+  highlights?: Array<string>,
   keywords: Array<string>,
   roles: Array<string>,
   type: string,
-  url: string,
+  url?: string,
   active: boolean,
 }
 
@@ -74,6 +75,7 @@ export type ResumeLanguage = {
 
 export type ResumeSkill = {
   name: string,
+  summary?: string,
   level: string,
   keywords: Array<string>,
 }

@@ -5,16 +5,25 @@ export interface Props {
   id?: string
   title?: string
   class?: string
+  card?: boolean
 }
 
-const { id, title, class: className } = Astro.props;
+let { id, title, class: className, card = false } = Astro.props;
 
+className = classnames(className, card ? '"w-full p-4 mt-4 rounded-md shadow-lg bg-stone-50 lg:full' : 'p-4')
 ---
 
-<section id={id} class={classnames(className, 'p-4')}>
-  <div class="w-full mb-2 text-3xl font-bold"><slot name="title">{title}</slot></div>
-
-  <div class="p-2">
+{card && <div class="w-full p-4 mt-4 rounded-md shadow-lg bg-stone-50 lg:full">
+  <div class="justify-between w-full p-6 mb-3 bg-white rounded shadow">
+    <div class="w-full mb-2 text-xl font-bold"><slot name="title">{title}</slot></div>
     <slot name="content" /><slot />
   </div>
-</section>
+</div>}
+
+{!card && <section id={id} class={className}>
+  <div class="w-full mb-2 text-3xl font-bold"><slot name="title">{title}</slot></div>
+
+  <div class="p-4 pt-0">
+    <slot name="content" /><slot />
+  </div>
+</section>}

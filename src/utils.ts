@@ -10,8 +10,8 @@ export const month = (idx: number, len?: number) => {
 export const dateParse = (strOrDate: string | Date) =>
   strOrDate instanceof Date ? strOrDate : new Date(strOrDate)
 
-export const dateFormat = (dateInput: string | Date | null) => {
-  if (dateInput === null) return null
+export const dateFormat = (dateInput?: string | Date | null) => {
+  if (!dateInput) return null
   const date = dateParse(dateInput)
   return `${month(date.getMonth(), 3)} ${date.getFullYear()}`
 }

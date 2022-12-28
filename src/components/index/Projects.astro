@@ -1,7 +1,9 @@
 ---
 import type { ResumeProject } from "../../types";
 import { yearRange } from "../../utils";
+import CalendarDays from "../icons/CalendarDays.astro";
 import Window from "../icons/Window.astro";
+import Wrench from "../icons/Wrench.astro";
 import Panel from "../widgets/Panel.astro";
 import Timeline from "../widgets/Timeline.astro";
 import TimelineItem from "../widgets/TimelineItem.astro";
@@ -34,28 +36,56 @@ const { items } = Astro.props;
 </style>
 
 <Panel id="projects" class="toggle-display">
-  <div slot="title">
-    <span class="flex">
-      <span class="flex-1">Projects</span>
-      <div class="form-control">
-        <label class="cursor-pointer label">
-          <span class="mr-4 label-text">Only active</span>
-          <input type="checkbox" class="toggle" checked />
-        </label>
-      </div>
-    </span>
-  </div>
   <Timeline slot="content">
+    <li class="ml-6">
+      <h3 class="mb-1 text-xl font-semibold text-gray-900">
+        <div class="flex flex-row-reverse">
+          <!--span class="flex-1">Projects</span-->
+          <div class="form-control">
+            <label class="cursor-pointer label">
+              <span class="mr-4 label-text">Only active</span>
+              <input type="checkbox" class="toggle toggle-sm" checked />
+            </label>
+          </div>
+        </div>
+      </h3>
+    </li>
     {
       items.map((i) => (
         <TimelineItem
-          class={i.active ? "active" : "inactive"}
           icon={Window}
+          class={i.active ? "active" : "inactive"}
           date={yearRange(i.startDate, i.endDate)}
           badge={!i.active && "discontinued"}
           title={i.name}
           content={i.description}
-        />
+          url={i.url}
+        >
+          <div slot="date" class="flex flex-row gap-2 text-gray-500">
+            <div>
+              <span class="inline-block font-normal group-hover:text-gray-700 transition duration-100 ease-in">
+                <CalendarDays class="w-5 h-5 -mb-1 text-gray-600" />
+              </span>
+              {yearRange(i.startDate, i.endDate)}
+            </div>
+            {i.keywords && i.keywords.length > 0 && <div>
+              <span class="inline-block font-normal group-hover:text-gray-700 transition duration-100 ease-in">
+                <Wrench class="w-5 h-5 -mb-1 text-gray-600" />
+              </span>
+              {i.keywords.map((k, i) => (
+                <span>{i > 0 && " · "}{k}</span>
+              ))}
+            </div>}
+          </div>
+          <div slot="content">
+            {i.description}
+            {/*i.highlights && <ul class="pl-4">
+              {i.highlights.map(h => (
+              <li><span class="absolute -ml-3 sm:-ml-3.2 select-none transform -translate-y-px">›</span> {h}</li>
+              ))}
+              </ul>*/}
+          </div>
+        </TimelineItem>
       ))
     }
   </Timeline>

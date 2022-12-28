@@ -12,7 +12,7 @@ import Skills from "../components/index/Skills.astro";
   <About basics={Resume.basics} />
 
   <div class="content">
-    <Tabs selected="1">
+    <Tabs selected="3">
       <div slot="experience">
         <Experience items={Resume.work} />
       </div>
@@ -20,7 +20,7 @@ import Skills from "../components/index/Skills.astro";
         <Projects items={Resume.projects} />
       </div>
       <div slot="skills">
-        <Skills items={Resume.skills} />
+        <Skills skills={Resume.skills} interests={Resume.interests} />
       </div>
     </Tabs>
   </div>

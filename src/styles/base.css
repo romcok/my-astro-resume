@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.-left-3-5 {
+  left: -0.85rem;
+}
+
 .animated-gradient-short {
   animation: animatedGradientShort 5s infinite ease;
   animation-fill-mode: both;

@@ -1,13 +1,17 @@
 ---
 import classnames from "classnames";
+import CalendarDays from "../icons/CalendarDays.astro";
+import Link from "../icons/Link.astro";
 
 export interface Props {
-  class?: string;
-  date: string;
-  badge?: string | boolean;
-  title: string;
-  content: string;
-  icon?: any;
+  class?: string
+  date: string
+  badge?: string | boolean
+  title: string
+  label?: string
+  content: string
+  icon?: any
+  url?: string
 }
 
 const {
@@ -15,27 +19,42 @@ const {
   date,
   badge,
   title,
+  label,
   content,
   icon: Icon,
+  url,
 } = Astro.props;
 ---
 
-<li class={classnames(className, "mb-10 ml-6")}>
+<li class={classnames("mb-10 ml-6", className)}>
   <span
-    class="absolute flex items-center justify-center w-6 h-6 bg-gray-200 rounded-full -left-3 ring-8 ring-white"
+    class="absolute flex items-center justify-center w-7 h-7 bg-white rounded-full -left-3-5 ring-8 ring-white text-gray-400"
   >
-    {Icon && <Icon styles="w-3 h-3 text-gray-600" />}
+    {Icon && <Icon solid="true" class="w-6 h-6 text-gray-700" />}    
   </span>
-  <h3 class="mb-1 text-lg font-semibold text-gray-900">
-    <slot name="title">{title}</slot>
+  <h3 class="mb-1 text-xl font-semibold text-gray-900">
+    <slot name="title">
+      {url && <a href={url} target="_blank">
+        {title}
+        <!--span class="inline-block text-gray-550 print:text-black font-normal group-hover:text-gray-700 transition duration-100 ease-in">↗</span-->
+        <span class="inline-block text-gray-550 font-normal group-hover:text-gray-700 transition duration-100 ease-in">
+          <Link class="w-5 h-5 -mb-1" />
+        </span>
+      </a>}
+      {!url && title}
+      {label && <span>{label}</span>}
+    </slot>
   </h3>
   <time class="block mb-2 text-sm font-normal leading-none text-gray-400">
     <slot name="date">
+      <span class="inline-block text-gray-550 font-normal group-hover:text-gray-700 transition duration-100 ease-in">
+        <CalendarDays class="w-5 h-5 -mb-1 text-gray-600" />
+      </span>
       {date}
       {badge && <div class="badge badge-outline">{badge}</div>}
     </slot>
   </time>
-  <p class="text-base font-normal text-gray-500">
+  <div class="text-base font-normal text-gray-600">
     <slot name="content">{content}</slot>
-  </p>
+  </div>
 </li>
