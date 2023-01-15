@@ -12,16 +12,16 @@ import Skills from "../components/index/Skills.astro";
   <About basics={Resume.basics} />
 
   <div class="content">
-    <Tabs selected="3">
+    <Tabs selected="1">
       <div slot="experience">
         <Experience items={Resume.work} />
       </div>
       <div slot="projects">
         <Projects items={Resume.projects} />
       </div>
-      <div slot="skills">
+      <!--div slot="skills">
         <Skills skills={Resume.skills} interests={Resume.interests} />
-      </div>
+      </div-->
     </Tabs>
   </div>
 </Layout>
