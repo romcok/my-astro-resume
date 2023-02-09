@@ -83,11 +83,12 @@ export type ResumeSkill = {
 export type ResumeVolunteer = {
   organization: string,
   startDate: string,
-  endDate: string,
+  endDate: string | null,
   position: string,
   summary: string,
   url: string,
   highlights: Array<string>,
+  location?: string,
 }
 
 export type Resume = {

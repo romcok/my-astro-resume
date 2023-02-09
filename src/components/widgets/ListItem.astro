@@ -1,0 +1,12 @@
+---
+import classnames from 'classnames'
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<div class="justify-between w-full p-6 mb-3 bg-white rounded shadow">
+  <slot name="content" /><slot />
+</div>

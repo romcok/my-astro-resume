@@ -5,7 +5,9 @@ import Experience from "../components/index/Experience.astro";
 import Projects from "../components/index/Projects.astro";
 import About from "../components/index/About.astro";
 import Tabs from "../components/widgets/Tabs.astro";
+import UserGroup from '../components/icons/UserGroup.astro';
 import Skills from "../components/index/Skills.astro";
+import Panel from "../components/widgets/Panel.astro";
 ---
 
 <Layout title={Resume.basics.name}>
@@ -15,6 +17,11 @@ import Skills from "../components/index/Skills.astro";
     <Tabs selected="1">
       <div slot="experience">
         <Experience items={Resume.work} />
+
+
+        <Panel id="interests" title="Volunteering" card={true}>
+          <Experience items={Resume.volunteer} icon={UserGroup} />
+        </Panel>
       </div>
       <div slot="projects">
         <Projects items={Resume.projects} />

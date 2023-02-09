@@ -1,0 +1,39 @@
+---
+import classnames from 'classnames'
+export interface Props {
+  tags: string[]
+  colorBase?: string
+  class?: string
+}
+const { tags, class: className, colorBase = 'gray' } = Astro.props;
+
+const shades = [
+  0,
+  200,
+  300,
+  500,
+  700,
+  900,
+]
+
+const tagClass = (tag: string) => {
+  if(tag.endsWith(')')) {
+    const modifier = tag.substring(tag.lastIndexOf('('))
+    // const shade = Number(modifier.match(/\d+/)?.[0]) * 100
+    const shade = shades[Number(modifier.match(/\d+/)?.[0])]
+    return [ `text-gray-${shade}`, `text-${colorBase}-${shade}`, `border-${colorBase}-${shade}` ]
+  } else return null
+}
+
+const tagName = (tag: string) => {
+  if(tag.endsWith(')')) {
+    return tag.substring(0, tag.lastIndexOf('('))
+  } else return tag
+}
+---
+
+<ul>
+  {tags.sort().map(k => (
+    <span class={classnames('badge badge-outline mr-1', tagClass(k))}>{tagName(k)}</span>
+  ))}
+</ul>

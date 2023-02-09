@@ -1,10 +1,26 @@
 ---
-import type { ResumeBasics } from "../types";
+import type { ResumeBasics, ResumeSkill } from "../types";
 import SocialIcon from "./SocialIcon.astro";
+import Bolt from "./icons/Bolt.astro";
+import Stars from './widgets/Stars.astro'
+import Progress from './widgets/Progress.astro'
+import Panel from "./widgets/Panel.astro";
+import List from './widgets/List.astro'
+import ListItem from './widgets/ListItem.astro'
+import TagCloud from './widgets/TagCloud.astro'
 
 export interface Props {
   basics: ResumeBasics;
+  skills: ResumeSkill[];
 }
+
+const levels = [ 'none', 'basic', 'advanced', 'competent', 'proficient', 'expert' ]
+
+const levelToStarRating = (level: string) =>
+  levels.indexOf(level) + 1
+
+const levelToProgressRating = (level: string) =>
+  levels.indexOf(level) * 20
 
 const {
   basics: {
@@ -13,13 +29,14 @@ const {
     location: { city, country },
     profiles,
   },
+  skills,
 } = Astro.props;
 ---
 
 <div
-  class="h-full p-4 overflow-y-auto menu bg-base-200 text-base-content place-content-around"
+  class="p-4 overflow-y-auto menu bg-base-200 text-base-content place-content-around"
 >
-  <div class="text-center w-fit">
+  <div class="text-center w-fit pt-10">
     <div
       class="avatar online online-sm outline-info-content transition ease-in-out w-3/4 hover:scale-[102%] block m-auto mt-3 mb-6"
     >
@@ -104,6 +121,30 @@ const {
         </ul-->
       </span>
     </div>
+
+    <!--div class="flex flex-col text-left"-->
+      <List class="mx-6 text-left">
+        <!--header slot="title" class="flex">
+            <Bolt class="w-6 h-6" /> 
+            <span class="ml-3 text-lg font-medium">Skills</span>
+        </header-->
+      {skills.map(s => (
+        <ListItem>
+          <!--Stars rating={levelToStarRating(s.level)} label={s.name} /-->
+          <Progress rating={levelToProgressRating(s.level)}>
+            <span slot="label" class="text-sm font-medium">{s.name}</span>
+          </Progress>
+
+          <p class="text-xs">
+            {s.summary}
+          </p>
+          
+          <TagCloud tags={s.keywords} />
+        </ListItem>
+      ))}
+      </List>
+
+    <!--/div-->
   </div>
 </div>
 <style>
