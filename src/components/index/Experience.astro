@@ -1,5 +1,5 @@
 ---
-import type { ResumeWork } from "../../types";
+import type { ResumeVolunteer, ResumeWork } from "../../types";
 import { dateFormat } from "../../utils";
 import Timeline from "../widgets/Timeline.astro";
 import Panel from "../widgets/Panel.astro";
@@ -9,10 +9,11 @@ import CalendarDays from "../icons/CalendarDays.astro";
 import MapPin from "../icons/MapPin.astro";
 
 export interface Props {
-  items: Array<ResumeWork>;
+  items: Array<Partial<ResumeWork & ResumeVolunteer>>
+  icon?: any
 }
 
-const { items } = Astro.props;
+const { items, icon: Icon } = Astro.props;
 ---
 
 <Panel id="experience">
@@ -20,12 +21,12 @@ const { items } = Astro.props;
     {
       items.map((i) => (
         <TimelineItem
-          icon={BuildingOffice2}
+          icon={Icon || BuildingOffice2}
           date={`${dateFormat(i.startDate)} - ${
             dateFormat(i.endDate) ?? "Present"
           } | ${i.location}`}
-          title={`${i.position} · ${i.name}`}
-          content={i.summary}
+          title={`${i.position} · ${i.name || i.organization}`}
+          content={i.summary || ''}
         >
           <div slot="date" class="flex flex-row gap-2 text-gray-500">
             <div>

@@ -1,0 +1,23 @@
+---
+export interface Props {
+  rating: number | string
+  label?: string
+}
+
+let { rating, label } = Astro.props
+
+const levels = [ 'none', 'basic', 'advanced', 'competent', 'proficient', 'expert' ]
+
+const levelToProgressRating = (level: string) =>
+  levels.indexOf(level) * 20
+
+if (typeof rating === 'string') {
+  rating = levelToProgressRating(rating)
+}
+
+---
+
+<div class="flex flex-wrap">
+  <div class="grow shrink-0 basis-10"><slot name="label" />{label && <p class="text-base lg:text-sm font-medium">{label}</p>}</div>
+  <div><progress class="progress w-56" value={rating} max="100"></progress></div>
+</div>

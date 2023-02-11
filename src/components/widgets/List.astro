@@ -1,0 +1,14 @@
+---
+import classnames from 'classnames'
+export interface Props {
+  class?: string;
+  title?: string;
+}
+
+const { class: className, title } = Astro.props;
+---
+
+<div class={classnames('p-4 mt-4 rounded-md shadow-lg bg-stone-50 lg:full', className)}>
+  <div class="mb-2 text-xl font-bold"><slot name="title">{title}</slot></div>
+  <slot />
+</div>

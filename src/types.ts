@@ -19,6 +19,12 @@ export type ResumeBasics = {
   }>,
   summary: string,
   url: string,
+  keywords?: Array<string>,
+  availability: {
+    status: boolean,
+    title: string,
+    description: string,
+  }
 }
 
 export type ResumeWork = {
@@ -83,11 +89,12 @@ export type ResumeSkill = {
 export type ResumeVolunteer = {
   organization: string,
   startDate: string,
-  endDate: string,
+  endDate: string | null,
   position: string,
   summary: string,
   url: string,
   highlights: Array<string>,
+  location?: string,
 }
 
 export type Resume = {
