@@ -13,7 +13,7 @@ let { id, title, class: className, card = false } = Astro.props;
 className = classnames(className, card ? '"w-full p-4 mt-4 rounded-md shadow-lg bg-stone-50 lg:full' : 'p-4')
 ---
 
-{card && <div class="w-full p-4 mt-4 rounded-md shadow-lg bg-stone-50 lg:full">
+{card && <div class="w-full p-4 pb-0 mt-4 rounded-md shadow-lg bg-stone-50 lg:full">
   <div class="justify-between w-full p-6 mb-3 bg-white rounded shadow">
     <div class="w-full mb-2 text-xl font-bold"><slot name="title">{title}</slot></div>
     <slot name="content" /><slot />
@@ -23,7 +23,7 @@ className = classnames(className, card ? '"w-full p-4 mt-4 rounded-md shadow-lg 
 {!card && <section id={id} class={className}>
   <div class="w-full mb-2 text-3xl font-bold"><slot name="title">{title}</slot></div>
 
-  <div class="p-4 pt-0">
+  <div class="p-4 pb-0 pt-0">
     <slot name="content" /><slot />
   </div>
 </section>}

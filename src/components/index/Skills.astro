@@ -1,7 +1,9 @@
 ---
 import type { ResumeInterest, ResumeSkill } from "../../types";
 import Panel from "../widgets/Panel.astro";
+import Progress from "../widgets/Progress.astro";
 import Quote from "../widgets/Quote.astro";
+import TagCloud from "../widgets/TagCloud.astro";
 
 export interface Props {
   skills: Array<ResumeSkill>
@@ -11,7 +13,24 @@ export interface Props {
 const { skills, interests } = Astro.props;
 ---
 
+<Panel id="skills">
 
+  {skills.map(s => (
+    <div class="flex flex-col justify-between w-full py-4 pl-4 pr-3 mb-3 bg-white rounded shadow">
+      <Progress rating={s.level}>
+        <span slot="label" class="text-sm font-medium">{s.name}</span>
+      </Progress>
+
+      <p class="text-xs">
+        {s.summary}
+      </p>
+      
+      <TagCloud tags={s.keywords} />
+    </div>
+  ))}
+
+</Panel>
+<!--
   <div class="w-full p-4 mt-4 rounded-md shadow-lg bg-stone-50 lg:full">
     {skills.map(i => (
     <div class="flex flex-col justify-between w-full py-4 pl-4 pr-3 mb-3 bg-white rounded shadow">
@@ -45,3 +64,4 @@ const { skills, interests } = Astro.props;
     image="rumi.webp"
   />
 </Panel>
+ -->

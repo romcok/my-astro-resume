@@ -19,6 +19,12 @@ export type ResumeBasics = {
   }>,
   summary: string,
   url: string,
+  keywords?: Array<string>,
+  availability: {
+    status: boolean,
+    title: string,
+    description: string,
+  }
 }
 
 export type ResumeWork = {
