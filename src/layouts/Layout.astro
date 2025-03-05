@@ -1,17 +1,19 @@
 ---
 // import "@fontsource/inter/variable.css";
-import "@fontsource/inter"
-import '../styles/base.css'
-import Resume from '../resume.json'
-import Head from "../components/Head.astro"
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
-import Sidebar from "../components/Sidebar.astro"
+import "@fontsource/inter";
+import "../styles/base.css";
+import config from "../../config.json";
+import Resume from "../../resume.json";
+import Head from "../components/Head.astro";
+// import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Sidebar from "../components/Sidebar.astro";
+import GithubCorner from "../components/widgets/GithubCorner.astro";
 
 export interface Props {
-  title: string,
-  description?: string,
-  image?: string,
+  title: string;
+  description?: string;
+  image?: string;
 }
 
 const { title, description, image } = Astro.props;
@@ -23,12 +25,24 @@ const { title, description, image } = Astro.props;
     <Head title={title} description={description} image={image} />
   </head>
   <body>
+    {
+      Resume.basics.repository && (
+        <GithubCorner url={Resume.basics.repository} />
+      )
+    }
     <!--Header basics={Resume.basics} /-->
     <div id="top" class="flex flex-col lg:flex-row bg-base-100">
-      <aside class="flex-grow border-2 lg:w-1/3 lg:h-screen lg:sticky lg:top-0 bg-base-200 border-base-300 lg:max-w-md">
-        <Sidebar basics={Resume.basics} skills={Resume.skills} />
+      <aside
+        class="flex-grow lg:border-r-2 lg:border-b-0 border-b-2 lg:w-1/3 lg:h-screen lg:fixed lg:top-0 lg:bottom-0 overflow-y-auto bg-base-200 border-base-300 lg:max-w-md"
+      >
+        <Sidebar
+          photoImage={config.photoImage}
+          githubAccount={config.githubAccount}
+          basics={Resume.basics}
+          skills={Resume.skills}
+        />
       </aside>
-      <div class="flex-col flex-grow lg:w-2/3 bg-base-100">
+      <div class="flex-col flex-grow lg:w-2/3 bg-base-100 lg:pl-[28rem]">
         <div class="md:flex md:justify-center">
           <main class="p-6 pb-0 pt-10 max-w-[900px]">
             <slot />
@@ -38,28 +52,29 @@ const { title, description, image } = Astro.props;
       </div>
     </div>
     <!--ScrollTop /-->
-  </body>
-</html>
-<style is:global>
-  @-moz-document url-prefix() { 
-    #about, .panels, .tabs ul, .scroll-top {
-      animation: none !important;
-    }
-    .scroll-top, .quote {
-      display: none;
-    }
-    
-  }
+    <style is:global>
+      @-moz-document url-prefix() {
+        #about,
+        .panels,
+        .tabs ul,
+        .scroll-top {
+          animation: none !important;
+        }
+        .scroll-top,
+        .quote {
+          display: none;
+        }
+      }
 
-  /*html {
+      /*html {
     /* https://stackoverflow.com/questions/3664381/force-page-scroll-position-to-top-at-page-refresh-in-html */
-    /*width: 100%;
+      /*width: 100%;
     height: 100%;
     overflow: hidden;
-    
+
     scroll-behavior:smooth;
   }*/
-  /*
+      /*
   body {
     width: 100%;
     height: 100%;
@@ -137,4 +152,6 @@ const { title, description, image } = Astro.props;
     100% { overflow: auto; }
   }
   */
-</style>
+    </style>
+  </body>
+</html>

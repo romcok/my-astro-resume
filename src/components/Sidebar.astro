@@ -1,72 +1,102 @@
 ---
-import type { ResumeBasics, ResumeSkill } from "../types"
-import classnames from 'classnames'
-import SocialIcon from "./SocialIcon.astro"
+import type { ResumeBasics, ResumeSkill } from "../types";
+import classnames from "classnames";
+import SocialIcon from "./SocialIcon.astro";
 import Progress from "./widgets/Progress.astro";
 import TagCloud from "./widgets/TagCloud.astro";
+import EmailBox from "./widgets/EmailBox.astro";
 
 export interface Props {
+  available: boolean;
+  photoImage: string;
+  githubAccount: string;
   basics: ResumeBasics;
   skills: ResumeSkill[];
 }
 
-const levels = [ 'none', 'basic', 'advanced', 'competent', 'proficient', 'expert' ]
+const levels = [
+  "none",
+  "basic",
+  "advanced",
+  "competent",
+  "proficient",
+  "expert",
+];
 
-const levelToProgress = (level: string) =>
-  levels.indexOf(level) * 20
+const levelToProgress = (level: string) => levels.indexOf(level) * 20;
 
 const {
+  available,
+  photoImage,
+  githubAccount,
   basics: {
     name,
     label,
+    email,
     location: { city, country },
     profiles,
     keywords,
+    repository,
   },
   skills,
-} = Astro.props;
+}: Props = Astro.props;
+
+const photoClass =
+  "avatar outline-info-content transition ease-in-out w-3/4 hover:scale-[105%] block m-auto mt-3 mb-6";
+const photoClassOnline =
+  "avatar online online-xs outline-info-content transition ease-in-out w-3/4 hover:scale-[105%] block m-auto mt-3 mb-6";
 ---
 
 <div
-  class="p-4 overflow-y-auto menu bg-base-200 text-base-content place-content-around flex flex-col flex-nowrap h-full"
+  class="p-4 pt-10 overflow-y-auto menu bg-base-200 text-base-content place-content-around flex flex-col min-h-screen flex-nowrap"
 >
-  <div class="text-center w-fit h-1/2 justify-center items-center flex flex-col shrink-0">
+  <div class="grow">
     <div
-      class="avatar online online-sm outline-info-content transition ease-in-out w-3/4 hover:scale-[102%] block m-auto mt-3 mb-6"
+      class="text-center w-fit h-1/2 justify-center items-center flex flex-col shrink-0"
     >
-      <div>
-        <img class="mask mask-squircle" src="/photo.jpg" alt="profile image" />
+      <div class={available ? photoClassOnline : photoClass}>
+        <div>
+          <img
+            class="mask mask-squircle"
+            src={photoImage}
+            alt="profile image"
+          />
+        </div>
       </div>
-    </div>
-    <h1 class="text-3xl font-extrabold">{name}</h1>
-    <p class="my-3 text-sm text-base-content/70">
+      <h1 class="text-3xl font-extrabold">{name}</h1>
+      {
+        /*<p class="my-3 text-sm text-base-content/70">
       {label}<br />
       {city}, {country}<br />
-    </p>
-
-    <!--div class="mt-2 text-center">
-      <div class="badge badge-ghost">Programming</div>
-      <div class="badge badge-ghost">Serverless</div> 
-      <div class="badge badge-ghost">Cloud</div> 
-    </div-->
-    <div class="flex self-center justify-center px-4 social-icons">
-      {
-        profiles.map((p) => (
-          <a href={p.url} target="_blank" class="mx-3" aria-label="{p.network}">
-            <SocialIcon network={p.network} />
-          </a>
-        ))
+    </p>*/
       }
-    </div>
-    <br />
-    <!--div class="grid grid-cols-1 xl:grid-cols-2 justify-start items-start mx-12">
+      <div class="mt-3">
+        <EmailBox email={email} textSize="md" />
+      </div>
+      <div class="flex self-center justify-center mt-3 px-4 social-icons">
+        {
+          profiles.map((p) => (
+            <a
+              href={p.url}
+              target="_blank"
+              class="mx-3"
+              aria-label="{p.network}"
+            >
+              <SocialIcon network={p.network} />
+            </a>
+          ))
+        }
+      </div>
+
+      <br />
+      <!--div class="grid grid-cols-1 xl:grid-cols-2 justify-start items-start mx-12">
       {skills.map(s => (
       <div class="text-base lg:text-sm font-medium">{s.name}</div>
       <div><progress class="progress w-56" value="50" max="100"></progress></div>
       ))}
     </div>
     <br-->
-    <!--br>
+      <!--br>
     <div class="flex flex-col flex-wrap text-left mx-12">
       {skills.map(s => (
         <Progress rating={s.level} label={s.name} />
@@ -76,17 +106,49 @@ const {
     <div class="btn-group">
       <button class="btn btn-accent btn-sm btn-disabled">Download resume</button>
     </div-->
-
-  </div>
-  <div class="flex flex-col w-1/2 items-center m-auto grow shrink-0">
-    {skills.map(s => (
-    <div class="text-base lg:text-sm font-medium mt-3">{s.name}</div>
-    <div><progress class="progress w-56" value={levelToProgress(s.level)} max="100"></progress></div>
-    ))}
-  </div>
-  <!--div>
+    </div>
+    <div class="flex flex-col w-1/2 items-center m-auto grow shrink-0">
+      {
+        skills.map((s) => (
+          <>
+            <div class="text-base lg:text-md font-medium mt-3 pl-2">
+              {s.name}
+            </div>
+            <div>
+              <progress
+                class="progress w-56"
+                value={levelToProgress(s.level)}
+                max="100"
+              />
+            </div>
+          </>
+        ))
+      }
+      {
+        githubAccount && (
+          <div class="text-base lg:text-sm font-medium mt-4 p text-center">
+            <a href={githubAccount} class="hover:underline">
+              Find more on GitHub profile &#128640;
+            </a>
+          </div>
+        )
+      }
+    </div>
+    <br />
+    <!--div>
     {keywords && <TagCloud tags={keywords} />}
   </div-->
+    <!--div class="text-center py-4 text-sm text-gray-500 relative bottom-0">
+    Made with ♥ in Prague, <a href="váš-odkaz" class="hover:underline"
+      >open-sourced to the world</a
+    >.
+  </div-->
+  </div>
+  <footer class="mt-auto text-center text-sm text-gray-500 bg-base-200">
+    Made with ♥ in Prague, <a href={repository} class="underline"
+      >open-sourced</a
+    > to the world.
+  </footer>
 </div>
 <style>
   .avatar.online-sm:before {

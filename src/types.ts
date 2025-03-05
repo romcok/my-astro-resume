@@ -2,6 +2,7 @@ export type ResumeBasics = {
   email: string,
   image: string,
   label: string,
+  repository: string,
   location: {
     address: string,
     postalCode: string,

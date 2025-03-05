@@ -1,0 +1,43 @@
+---
+import type { ResumeSkill } from "../../types";
+import List from "./List.astro";
+import ListItem from "./ListItem.astro";
+import Progress from "./Progress.astro";
+import TagCloud from "./TagCloud.astro";
+
+export interface Props {
+  skills: Array<ResumeSkill>
+}
+
+const levels = [ 'none', 'basic', 'advanced', 'competent', 'proficient', 'expert' ]
+
+const levelToStarRating = (level: string) =>
+  levels.indexOf(level) + 1
+
+const levelToProgressRating = (level: string) =>
+  levels.indexOf(level) * 20
+
+
+const { skills } = Astro.props
+---
+
+<List class="mx-6 text-left">
+  <!--header slot="title" class="flex">
+      <Bolt class="w-6 h-6" /> 
+      <span class="ml-3 text-lg font-medium">Skills</span>
+  </header-->
+{skills.map(s => (
+  <ListItem>
+    <!--Stars rating={levelToStarRating(s.level)} label={s.name} /-->
+    <Progress rating={levelToProgressRating(s.level)}>
+      <span slot="label" class="text-sm font-medium">{s.name}</span>
+    </Progress>
+
+    <p class="text-xs">
+      {s.summary}
+    </p>
+    
+    <TagCloud tags={s.keywords} />
+  </ListItem>
+))}
+</List>

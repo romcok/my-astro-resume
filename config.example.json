@@ -1,0 +1,14 @@
+{
+  "title": "Here is Roman",
+  "description": "I am building serverless cloud solutions.",
+  "photoImage": "photo.jpg",
+  "available": true,
+  "availabilityTitle": "Available to Consulting Engagements",
+  "availabilityDescription": "",
+  "badgeImage": "",
+  "badgeLink": "",
+  "cloudflareToken": "",
+  "cloudflareAnalyticsToken": "",
+  "githubAccount": "https://github.com/romcok",
+  "githubRepository": "https://github.com/romcok/my-astro-resume"
+}

@@ -1,26 +1,36 @@
 ---
-import Resume from "../resume.json";
+import config from "../../config.json";
+import Resume from "../../resume.json";
 import Layout from "../layouts/Layout.astro";
 import Experience from "../components/index/Experience.astro";
 import Projects from "../components/index/Projects.astro";
 import About from "../components/index/About.astro";
 import Tabs from "../components/widgets/Tabs.astro";
-import UserGroup from '../components/icons/UserGroup.astro'
+import UserGroup from "../components/icons/UserGroup.astro";
 import Panel from "../components/widgets/Panel.astro";
 ---
 
-<Layout title={Resume.basics.name}>
-  <About basics={Resume.basics} />
+<Layout title={config.title}>
+  <About
+    title={config.title}
+    description={config.description}
+    available={config.available}
+    availabilityTitle={config.availabilityTitle}
+    availabilityDescription={config.availabilityDescription}
+    badgeImage={config.badgeImage}
+    badgeLink={config.badgeLink}
+    basics={Resume.basics}
+  />
 
   <div class="content">
     <Tabs selected="1">
       <div slot="experience">
         <Experience items={Resume.work} />
 
-        <div class="justify-between w-full p-6 pb-0 mb-3 rounded -mt-10 -mx-6">
+        <!--div class="justify-between w-full p-6 pb-0 mb-3 rounded -mt-10 -mx-6">
           <div class="w-full mb-2 text-2xl text-gray-900 font-bold">Volunteering</div>
           <Experience items={Resume.volunteer} icon={UserGroup} />
-        </div>
+        </div-->
       </div>
       <div slot="projects">
         <Projects items={Resume.projects} />
