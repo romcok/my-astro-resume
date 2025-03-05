@@ -36,6 +36,7 @@ const { title, description, image } = Astro.props;
         class="flex-grow lg:border-r-2 lg:border-b-0 border-b-2 lg:w-1/3 lg:h-screen lg:fixed lg:top-0 lg:bottom-0 overflow-y-auto bg-base-200 border-base-300 lg:max-w-md"
       >
         <Sidebar
+          available={config.available}
           photoImage={config.photoImage}
           githubAccount={config.githubAccount}
           basics={Resume.basics}
